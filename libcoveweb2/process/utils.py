@@ -1,5 +1,7 @@
 import importlib
 import logging
+import sys
+import traceback
 from datetime import datetime
 
 from django.conf import settings
@@ -51,7 +53,10 @@ def process_data_worker(id: str):
         # To our database
         supplied_data.error = str(e)
         # To logs
-        logger.error(e, exc_info=True)
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        logger.error(
+            "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+        )
         # To Sentry
         capture_exception(e)
 
