@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Added
+
+- Model SuppliedDataFile has new method storage_name for use with Django storage (like storage_dir on SuppliedData)
+
 ## [0.1.0] - 2023-06-16
 
 First Release
