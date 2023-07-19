@@ -38,4 +38,11 @@ def get_file_type_for_flatten_tool(supplied_data_file: SuppliedDataFile):
     except FileNotFoundError:
         pass
     # All right, we give up.
-    raise
+    raise Exception(
+        "Could not get file type for file "
+        + str(supplied_data_file.id)
+        + " with file name "
+        + str(supplied_data_file.filename)
+        + " and content type "
+        + str(supplied_data_file.content_type)
+    )

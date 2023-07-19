@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## Fixed
+
+- utils.py: get_file_type_for_flatten_tool: include an error message in raise at end https://github.com/OpenDataServices/lib-cove-web-2/issues/3
+
 ## [0.2.0] - 2023-07-11
 
 ## Added
