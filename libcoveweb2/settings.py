@@ -173,21 +173,29 @@ LOGGING = {
     },
 }
 
-ALLOWED_JSON_CONTENT_TYPES = ["application/json", "application/octet-stream"]
+# Sometimes uploads happen with a generic content type.
+# In this case, we can't rely on content type to detect type.
+# But the type is still allowed, so it's added to
+#   ALLOWED_*_CONTENT_TYPES when they are defined.
+ALLOWED_UNKNOWN_CONTENT_TYPES = ["application/octet-stream"]
+
+# JSON details
+ALLOWED_JSON_CONTENT_TYPES = ["application/json"] + ALLOWED_UNKNOWN_CONTENT_TYPES
 ALLOWED_JSON_EXTENSIONS = [".json"]
 
+# Excel details
 ALLOWED_SPREADSHEET_EXCEL_CONTENT_TYPES = [
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    "application/octet-stream",
-]
+] + ALLOWED_UNKNOWN_CONTENT_TYPES
 ALLOWED_SPREADSHEET_EXCEL_EXTENSIONS = [".xlsx"]
 
+# Open Document details
 ALLOWED_SPREADSHEET_OPENDOCUMENT_CONTENT_TYPES = [
     "application/vnd.oasis.opendocument.spreadsheet",
-    "application/octet-stream",
-]
+] + ALLOWED_UNKNOWN_CONTENT_TYPES
 ALLOWED_SPREADSHEET_OPENDOCUMENT_EXTENSIONS = [".ods"]
 
+# Spreadsheet details (sum of details above)
 ALLOWED_SPREADSHEET_CONTENT_TYPES = (
     ALLOWED_SPREADSHEET_EXCEL_CONTENT_TYPES
     + ALLOWED_SPREADSHEET_OPENDOCUMENT_CONTENT_TYPES
@@ -196,5 +204,6 @@ ALLOWED_SPREADSHEET_EXTENSIONS = (
     ALLOWED_SPREADSHEET_EXCEL_EXTENSIONS + ALLOWED_SPREADSHEET_OPENDOCUMENT_EXTENSIONS
 )
 
-ALLOWED_CSV_CONTENT_TYPES = ["text/csv", "application/octet-stream"]
+# CSV Details
+ALLOWED_CSV_CONTENT_TYPES = ["text/csv"] + ALLOWED_UNKNOWN_CONTENT_TYPES
 ALLOWED_CSV_EXTENSIONS = [".csv"]

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+When upgrading to this version, `ALLOWED_UNKNOWN_CONTENT_TYPES` must be set in the Django settings file, ideally from the settings file included with this library.
+
+## Added
+
+- utils.py: get_file_type_for_flatten_tool: consider content type too
+- settings.ALLOWED_UNKNOWN_CONTENT_TYPES.
+
 ## Fixed
 
 - utils.py: get_file_type_for_flatten_tool: include an error message in raise at end https://github.com/OpenDataServices/lib-cove-web-2/issues/3
