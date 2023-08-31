@@ -11,6 +11,7 @@ When upgrading to this version, `ALLOWED_UNKNOWN_CONTENT_TYPES` must be set in t
 
 ## Added
 
+- base.html: Wrap default terms and conditions in template block so it can be overridden
 - utils.py: get_file_type_for_flatten_tool: consider content type too
 - settings.ALLOWED_UNKNOWN_CONTENT_TYPES.
 
