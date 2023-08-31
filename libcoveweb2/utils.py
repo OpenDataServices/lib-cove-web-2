@@ -29,6 +29,26 @@ def get_file_type_for_flatten_tool(supplied_data_file: SuppliedDataFile):
     for extension in settings.ALLOWED_CSV_EXTENSIONS:
         if supplied_data_file.filename.lower().endswith(extension):
             return "csv"
+    # Check the content type
+    if (
+        supplied_data_file.content_type
+        and supplied_data_file.content_type
+        not in settings.ALLOWED_UNKNOWN_CONTENT_TYPES
+    ):
+        if supplied_data_file.content_type in settings.ALLOWED_JSON_CONTENT_TYPES:
+            return "json"
+        if (
+            supplied_data_file.content_type
+            in settings.ALLOWED_SPREADSHEET_EXCEL_CONTENT_TYPES
+        ):
+            return "xlsx"
+        if (
+            supplied_data_file.content_type
+            in settings.ALLOWED_SPREADSHEET_OPENDOCUMENT_CONTENT_TYPES
+        ):
+            return "ods"
+        if supplied_data_file.content_type in settings.ALLOWED_CSV_CONTENT_TYPES:
+            return "csv"
     # Try and load the first bit of the file to see if it's JSON?
     try:
         with open(supplied_data_file.upload_dir_and_filename(), "rb") as fp:
@@ -38,4 +58,11 @@ def get_file_type_for_flatten_tool(supplied_data_file: SuppliedDataFile):
     except FileNotFoundError:
         pass
     # All right, we give up.
-    raise
+    raise Exception(
+        "Could not get file type for file "
+        + str(supplied_data_file.id)
+        + " with file name "
+        + str(supplied_data_file.filename)
+        + " and content type "
+        + str(supplied_data_file.content_type)
+    )
