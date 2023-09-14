@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [0.3.0]
+## [0.3.0] - 2023-09-14
 
 When upgrading to this version, `ALLOWED_UNKNOWN_CONTENT_TYPES` must be set in the Django settings file, ideally from the settings file included with this library.
 
