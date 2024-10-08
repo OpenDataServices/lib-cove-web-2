@@ -13,17 +13,22 @@ class TaskWithState(ProcessDataTask):
     Extend and provide your own state_filename and process_get_state.
     """
 
-    """Set state_filename to a unique name for each task.
-    If you change this name the task will be rerun, so this is is a good way to
-    make sure all underlying data changes if a new version of this bit of cove
-    is released."""
-    state_filename: str = "task_with_state.py"
+    #: Set state_filename to a unique name for each task.
+    #:
+    #: If you change this name the task will be rerun, so this is is a good way to
+    #: make sure all underlying data changes if a new version of this bit of cove
+    #: is released.
+    state_filename: str = "task_with_state.json"
 
     def process_get_state(self, process_data: dict):
-        """Should return a dict that is the state to save, and process_data.
-        Is only called if there is work to do, so does not need to worry about
-        checking that.
-        """
+        """Called to process data.
+
+        Is only called if there is work to do,
+        so does not need to worry about checking that.
+
+        Should return a tuple.
+        The first item is the results to save, as a dictionary.
+        The second item is process_data, as a dictionary."""
         return {}, process_data
 
     def process(self, process_data: dict) -> dict:

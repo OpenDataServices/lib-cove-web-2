@@ -18,12 +18,20 @@ class ProcessDataTask:
 
         eg. A task to convert a spreadsheet to JSON will never be applicable
             if JSON is uploaded in the first place.
+
         eg. A task to check the data against JSON Schema will always be applicable.
+
+        This method is called on a user request on the web;
+        so it must not take a long time to finish.
         """
         return False
 
     def is_processing_needed(self) -> bool:
-        """Should return True if this task needs to do any processing"""
+        """Should return True if this task needs to do any processing.
+
+        This method is called on a user request on the web;
+        so it must not take a long time to finish.
+        """
         return False
 
     def process(self, process_data: dict) -> dict:
@@ -39,7 +47,11 @@ class ProcessDataTask:
         You should do your own checks to make sure you are not doing unneeded work.
         This is so you can still add relevant info to process_data dict.
 
-        But it's not called if is_processing_applicable() is false."""
+        But it's not called if is_processing_applicable() is false.
+
+        This is only called by the background worker,
+        so it can take as long as it needs to do it's work.
+        """
         return process_data
 
     def get_context(self):

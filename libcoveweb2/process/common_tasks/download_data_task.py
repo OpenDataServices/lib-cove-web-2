@@ -2,7 +2,9 @@ from libcoveweb2.process.base import ProcessDataTask
 
 
 class DownloadDataTask(ProcessDataTask):
-    """If user gave us a URL, we download it now."""
+    """If user gave us a URL, we download it now.
+
+    It is possible for apps to use this class with no further configuration."""
 
     def is_processing_applicable(self) -> bool:
         for supplied_data_file in self.supplied_data_files:

@@ -29,16 +29,22 @@ env = environ.Env(  # set default values and casting
     DELETE_FILES_AFTER_DAYS=(int, 7),
 )
 
+#: Details for Piwik/Matamo tracking, if wanted.
+#: Should be a dictionary with the following keys: url, site_id and dimension_map
 PIWIK = {
     "url": env("PIWIK_URL"),
     "site_id": env("PIWIK_SITE_ID"),
     "dimension_map": env("PIWIK_DIMENSION_MAP"),
 }
+#: Details for Google Analytics tracking, if wanted. Should be a string of the id.
 GOOGLE_ANALYTICS_ID = env("GOOGLE_ANALYTICS_ID")
 
 VALIDATION_ERROR_LOCATIONS_LENGTH = env("VALIDATION_ERROR_LOCATIONS_LENGTH")
 VALIDATION_ERROR_LOCATIONS_SAMPLE = env("VALIDATION_ERROR_LOCATIONS_SAMPLE")
 
+#: Uploaded data is deleted after a certain number of days to protect privacy,
+#: leaving only meta data for usage analysis.
+#: Should be an integer of the number of days.
 DELETE_FILES_AFTER_DAYS = env("DELETE_FILES_AFTER_DAYS")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -173,37 +179,42 @@ LOGGING = {
     },
 }
 
-# Sometimes uploads happen with a generic content type.
-# In this case, we can't rely on content type to detect type.
-# But the type is still allowed, so it's added to
-#   ALLOWED_*_CONTENT_TYPES when they are defined.
+#: Sometimes uploads happen with a generic content type.
+#: In this case, we can't rely on content type to detect type.
+#: But the type is still allowed. Define these generic content-types in a handy variable
+#: so we can also add them to all the ALLOWED_*_CONTENT_TYPES settings.
 ALLOWED_UNKNOWN_CONTENT_TYPES = ["application/octet-stream"]
 
-# JSON details
+#: Allowed types for JSON files
 ALLOWED_JSON_CONTENT_TYPES = ["application/json"] + ALLOWED_UNKNOWN_CONTENT_TYPES
+#: Allowed file extensions for JSON files
 ALLOWED_JSON_EXTENSIONS = [".json"]
 
-# Excel details
+#: Allowed types for Excel files
 ALLOWED_SPREADSHEET_EXCEL_CONTENT_TYPES = [
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 ] + ALLOWED_UNKNOWN_CONTENT_TYPES
+#: Allowed file extensions for Excel files
 ALLOWED_SPREADSHEET_EXCEL_EXTENSIONS = [".xlsx"]
 
-# Open Document details
+#: Allowed types for Open Document files
 ALLOWED_SPREADSHEET_OPENDOCUMENT_CONTENT_TYPES = [
     "application/vnd.oasis.opendocument.spreadsheet",
 ] + ALLOWED_UNKNOWN_CONTENT_TYPES
+#: Allowed file extensions for Open Document files
 ALLOWED_SPREADSHEET_OPENDOCUMENT_EXTENSIONS = [".ods"]
 
-# Spreadsheet details (sum of details above)
+#: Allowed types for Spreadsheet files (sum of Excel and Open Document)
 ALLOWED_SPREADSHEET_CONTENT_TYPES = (
     ALLOWED_SPREADSHEET_EXCEL_CONTENT_TYPES
     + ALLOWED_SPREADSHEET_OPENDOCUMENT_CONTENT_TYPES
 )
+#: Allowed file extensions for Spreadsheet files (sum of Excel and Open Document)
 ALLOWED_SPREADSHEET_EXTENSIONS = (
     ALLOWED_SPREADSHEET_EXCEL_EXTENSIONS + ALLOWED_SPREADSHEET_OPENDOCUMENT_EXTENSIONS
 )
 
-# CSV Details
+#: Allowed types for CSV files
 ALLOWED_CSV_CONTENT_TYPES = ["text/csv"] + ALLOWED_UNKNOWN_CONTENT_TYPES
+#: Allowed file extensions for CSV files
 ALLOWED_CSV_EXTENSIONS = [".csv"]
