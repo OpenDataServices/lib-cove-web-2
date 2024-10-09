@@ -26,6 +26,6 @@ The application consists of:
    django-settings.rst
    python-api/index.rst
    migration-from-lib-cove-web.rst
-   hosting/requirements.rst
+   hosting/index.rst 
    used-by.rst
 
