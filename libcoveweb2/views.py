@@ -149,18 +149,31 @@ class ExploreDataView(View):
 
     def view_data_has_error(self, request, supplied_data):
         """Called if the supplied data has any error set."""
-        return render(
-            request,
-            self.error_template,
-            {
-                "sub_title": _("Sorry, there was an error."),
-                "link": "index",
-                "link_text": _("Go to Home page"),
-                #"msg": _("There was an error."),
-                "msg": f"There was an error. {supplied_data.error}",
-            },
-            status=500,
-        )
+        if supplied_data.error.startswith("JSON: Data parsing error"):
+            return render(
+                request,
+                self.error_template,
+                {
+                    "sub_title": _("Data parsing error."),
+                    "link": "index",
+                    "link_text": _("Go to Home page"),
+                    "msg": "The data is not valid JSON. Use a JSON validator tool to correct your data.",
+                },
+                status=500,
+            )
+        else:
+            return render(
+                request,
+                self.error_template,
+                {
+                    "sub_title": _("Sorry, there was an error."),
+                    "link": "index",
+                    "link_text": _("Go to Home page"),
+                    #"msg": _("There was an error."),
+                    "msg": f"There was an error. {supplied_data.error}",
+                },
+                status=500,
+            )
 
     def view_has_expired(self, request, supplied_data):
         """Called if the data has expired and has now been deleted.
