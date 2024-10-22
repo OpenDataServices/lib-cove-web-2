@@ -156,7 +156,8 @@ class ExploreDataView(View):
                 "sub_title": _("Sorry, there was an error."),
                 "link": "index",
                 "link_text": _("Go to Home page"),
-                "msg": _("There was an error."),
+                #"msg": _("There was an error."),
+                "msg": f"There was an error. {supplied_data.error}",
             },
             status=500,
         )
