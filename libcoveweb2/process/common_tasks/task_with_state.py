@@ -48,6 +48,8 @@ class TaskWithState(ProcessDataTask):
 
         state, process_data_throw_away = self.process_get_state(process_data)
 
+        print("State:", state)
+
         default_storage.save(
             os.path.join(self.supplied_data.storage_dir(), self.state_filename),
             ContentFile(json.dumps(state, indent=4)),
