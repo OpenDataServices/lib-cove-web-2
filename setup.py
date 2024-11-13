@@ -19,7 +19,9 @@ setup(
         ]
     },
     url="https://github.com/OpenDataServices/lib-cove-web-2",
-    description="q",
+    description="",
+    long_description="",
+    long_description_content_type="text/plain",
     classifiers=[],
     python_requires=">=3.8",
     install_requires=[
