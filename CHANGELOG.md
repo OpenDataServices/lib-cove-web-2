@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Changed
 
 - In `TaskWithState.process_get_state()` any changes to `process_data` are now ignored. https://github.com/OpenDataServices/lib-cove-web-2/issues/14
+- Provide a specific error when JSON parsing fails, rather than generic "There was an error."
 
 ## [0.3.0] - 2023-09-14
 
