@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## Changed
+## [0.4.0] - 2024-12-17
+
+### Changed
 
 - In `TaskWithState.process_get_state()` any changes to `process_data` are now ignored. https://github.com/OpenDataServices/lib-cove-web-2/issues/14
 - Provide a specific error when JSON parsing fails, rather than generic "There was an error."
@@ -16,19 +18,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 When upgrading to this version, `ALLOWED_UNKNOWN_CONTENT_TYPES` must be set in the Django settings file, ideally from the settings file included with this library.
 
-## Added
+### Added
 
 - base.html: Wrap default terms and conditions in template block so it can be overridden
 - utils.py: get_file_type_for_flatten_tool: consider content type too
 - settings.ALLOWED_UNKNOWN_CONTENT_TYPES.
 
-## Fixed
+### Fixed
 
 - utils.py: get_file_type_for_flatten_tool: include an error message in raise at end https://github.com/OpenDataServices/lib-cove-web-2/issues/3
 
 ## [0.2.0] - 2023-07-11
 
-## Added
+### Added
 
 - Model SuppliedDataFile has new method storage_name for use with Django storage (like storage_dir on SuppliedData)
 
