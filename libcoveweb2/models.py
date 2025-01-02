@@ -10,16 +10,35 @@ from django.urls import reverse
 
 
 class SuppliedData(models.Model):
+    """
+    The Database Model class to represent one set of supplied data sent to
+    the app by a user.
+    This can be one or more files (modelled by the SuppliedDataFile class).
+    """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """id - an automatically assigned UUID."""
 
     format = models.TextField()
 
     created = models.DateTimeField(auto_now_add=True, null=True)
+    """Date this supplied data was created. Not Null."""
+
     expired = models.DateTimeField(null=True)
+    """Date this supplied data was expired.
+    Nullable for the situation when it hasn't been expired yet.
+
+    Upon expiration, the data on disk will be deleted (to preserve our users privacy)
+    but the database objects left so we have meta data to track usage.
+    """
+
     processed = models.DateTimeField(null=True)
+    """Date this supplied data was expired.
+    Nullable for the situation when it hasn't been processed yet."""
     error = models.TextField(null=True)
 
     """meta is for any extra information that specific cove implementations need.
+
     This lets them store any info without needing changes to core libraries."""
     meta = models.JSONField(null=False, default=dict)
 
@@ -29,10 +48,12 @@ class SuppliedData(models.Model):
     def storage_dir(self):
         """For use with Django storage classes.
         Returns directory any data about the SuppliedData should be stored in.
+
         Example use:
-        default_storage.exists(
-            os.path.join(supplied_data.storage_dir(), "some_filename.json")
-        )
+
+            default_storage.exists(
+                os.path.join(supplied_data.storage_dir(), "some_filename.json")
+            )
         """
         return str(self.id)
 
@@ -109,15 +130,28 @@ class SuppliedData(models.Model):
 
 
 class SuppliedDataFile(models.Model):
+    """
+    The Database Model class to represent one file or one set of data
+    sent to the app by a user.
+    A submission by a user (modelled by the SuppliedData class)
+    may have one or more SuppliedDataFile's.
+    """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    """id - an automatically assigned UUID."""
+
     supplied_data = models.ForeignKey(SuppliedData, on_delete=models.CASCADE)
+    """A foreign key that links back to the SuppliedData this file belongs to."""
+
     filename = models.TextField()
     size = models.PositiveBigIntegerField(null=True)
     content_type = models.TextField(null=True)
     charset = models.TextField(null=True)
+
+    meta = models.JSONField(null=False, default=dict)
     """meta is for any extra information that specific cove implementations need.
     This lets them store any info without needing changes to core libraries."""
-    meta = models.JSONField(null=False, default=dict)
+
     source_method = models.TextField(null=True)
     source_url = models.URLField(null=True)
 
@@ -140,9 +174,11 @@ class SuppliedDataFile(models.Model):
 
     def storage_name(self):
         """For use with Django storage classes.
-        Returns full name in storage
+        Returns full name in storage.
+
         Example use:
-        default_storage.open(os.path.join(supplied_data_file.storage_name())
+
+            default_storage.open(supplied_data_file.storage_name())
         """
         return os.path.join(
             str(self.supplied_data.id),

@@ -13,3 +13,5 @@ It does not document Python that is not intended for reuse by others (you can re
    process/base.rst
    process/common_tasks/download_data_task.rst
    process/common_tasks/task_with_state.rst
+   models.rst
+
