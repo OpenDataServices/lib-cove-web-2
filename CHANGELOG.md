@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2025-02-11
+
+### Changed
+
+- Rename to new package name, new templates path and module name
+
 ## [0.4.0] - 2024-12-17
 
 ### Changed

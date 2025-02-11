@@ -4,7 +4,7 @@ install_requires = []
 
 setup(
     name="libfjordweb",
-    version="0.4.0",
+    version="0.5.0",
     author="Open Data Services",
     author_email="code@opendataservices.coop",
     packages=find_packages(),
