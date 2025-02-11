@@ -63,7 +63,7 @@ An example task pipeline
 
         PROCESS_TASKS = [
             # Get data if not already on disk - if the user provided a URL
-            ("libcoveweb2.process.common_tasks.download_data_task", "DownloadDataTask"),
+            ("libfjordweb.process.common_tasks.download_data_task", "DownloadDataTask"),
             # BOD's has a special Sample mode.
             # If that's activated, we'll make the sample data now for later tasks to use.
             ("cove_bods.process", "Sample"),

@@ -1,8 +1,8 @@
-LibCoveWeb2
+LibFjordWeb
 ===========
 
 
-LibCoveWeb2 is a Django application to use as a library in your own Django apps.
+LibFjordWeb is a Django application to use as a library in your own Django apps.
 
 It let's you create CoVE apps - CoVE exists to help people:
 

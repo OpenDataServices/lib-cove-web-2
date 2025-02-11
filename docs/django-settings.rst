@@ -11,7 +11,7 @@ Process Tasks
 You need to define a `PROCESS_TASKS` setting. This lists all the tasks that will be processed for each uploaded data, in order of processing.
 
 It should be a list of tuples and every tuple should be `('Python module', 'Python class name')`.
-Each class should extend libcoveweb2.process.base.ProcessDataTask
+Each class should extend libfjordweb.process.base.ProcessDataTask
 
 Example:
 
@@ -19,7 +19,7 @@ Example:
 
     PROCESS_TASKS = [
         # Get data if not already on disk
-        ("libcoveweb2.process.common_tasks.download_data_task", "DownloadDataTask"),
+        ("libfjordweb.process.common_tasks.download_data_task", "DownloadDataTask"),
         ...
     ]
 
@@ -42,7 +42,7 @@ To do so, you can do something like this in your Django project's main setting.p
 
 .. code-block:: python
 
-    from libcoveweb2 import settings
+    from libfjordweb import settings
     ALLOWED_JSON_CONTENT_TYPES = settings.ALLOWED_JSON_CONTENT_TYPES
     ALLOWED_JSON_EXTENSIONS = settings.ALLOWED_JSON_EXTENSIONS
     ...
