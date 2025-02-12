@@ -3,13 +3,13 @@ from setuptools import find_packages, setup
 install_requires = []
 
 setup(
-    name="libcoveweb2",
-    version="0.4.0",
+    name="libfjordweb",
+    version="0.5.0",
     author="Open Data Services",
     author_email="code@opendataservices.coop",
     packages=find_packages(),
     package_data={
-        "libcoveweb2": [
+        "libfjordweb": [
             "static/*",
             "static/*/*",
             "static/*/*/*",

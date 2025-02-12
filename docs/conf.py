@@ -4,9 +4,9 @@ import sys
 
 import django
 
-import libcoveweb2.settings
+import libfjordweb.settings
 
-project = "LibCoveWeb2"
+project = "LibFjordWeb"
 
 master_doc = "index"
 
@@ -22,6 +22,6 @@ extensions = [
 sys.path.insert(0, str(pathlib.Path("..").resolve()))
 
 # We need to set up Django enough that it won't complain
-libcoveweb2.settings.INSTALLED_APPS += ("libcoveweb2",)
-os.environ["DJANGO_SETTINGS_MODULE"] = "libcoveweb2.settings"
+libfjordweb.settings.INSTALLED_APPS += ("libfjordweb",)
+os.environ["DJANGO_SETTINGS_MODULE"] = "libfjordweb.settings"
 django.setup()
