@@ -28,7 +28,7 @@ app.autodiscover_tasks()
 
 class CeleryInspector:
     def __init__(self):
-        global app
+        global app  # noqa
         self._inspector = app.control.inspect()
 
     def is_supplied_data_being_processed(self, id):
