@@ -28,4 +28,5 @@ The application consists of:
    migration-from-lib-cove-web.rst
    hosting/index.rst 
    used-by.rst
+   develop.rst
 
