@@ -7,7 +7,12 @@ setup(
     version="0.5.0",
     author="Open Data Services",
     author_email="code@opendataservices.coop",
-    packages=find_packages(),
+    packages=find_packages(
+        exclude=(
+            "fjorddemo",
+            "fjorddemo.*",
+        )
+    ),
     package_data={
         "libfjordweb": [
             "static/*",
