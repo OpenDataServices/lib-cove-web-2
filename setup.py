@@ -28,7 +28,7 @@ setup(
     long_description="",
     long_description_content_type="text/plain",
     classifiers=[],
-    python_requires=">=3.9",
+    python_requires=">=3.10",
     install_requires=[
         "sentry-sdk",
         "Django",

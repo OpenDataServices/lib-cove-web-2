@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Removed
 
-- Support for Python 3.8, as it is end of life
+- Support for Python 3.8 & 3.9, as they are end of life
 
 ## [0.5.0] - 2025-02-11
 
